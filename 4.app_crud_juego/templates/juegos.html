@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block titulo %}Juegos{% endblock %}
+
+{% block contenido %}
+<div class="container my-4">
+  <div class="row">
+    <div class="col">
+      <h3 class="h3">Juegos</h3>
+      <a href="{{ url_for('formulario_agregar_juego') }}" class="pulse btn btn-success mb-3">Agregar Juego</a>
+      <div class="table-responsive">
+        <table class="table table-striped" style="border: 3px solid #d946ef">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if juegos %}
+            {% for juego in juegos %}
+            <tr>
+              <td style="color: white;">{{ juego['nombre'] }}</td>
+              <td style="color: white;">{{ juego['descripcion'] }}</td>
+              <td style="color: white;">{{ juego['precio'] }}</td>
+              <td>
+                <a href="{{ url_for('editar_juego', id=juego['id']) }}" class="btn btn-info btn-sm">Editar</a>
+              </td>
+              <td>
+                <form action="{{ url_for('eliminar_juego') }}" method="POST" class="d-inline">
+                  <input type="hidden" name="id" value="{{ juego['id'] }}">
+                  <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+              <td colspan="5" class="text-center">No hay juegos disponibles.</td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

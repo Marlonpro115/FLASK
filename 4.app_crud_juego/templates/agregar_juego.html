@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block titulo %} Agregar juego {% endblock %}
+{% block contenido %}
+<style>
+  /* Estilos para el botón Guardar */
+  .btn-save {
+      background-color: #be123c; /* Color principal */
+      color: white; /* Texto blanco */
+      border: none; /* Sin borde */
+      padding: 12px 25px; /* Aumenta el tamaño del botón */
+      font-size: 1.2rem; /* Aumenta el tamaño de la fuente */
+      border-radius: 50px; /* Redondea los bordes */
+      transition: background-color 0.3s ease-in-out; /* Transición suave */
+  }
+
+  .btn-save:hover {
+      background-color: #fb7185; /* Color al pasar el mouse */
+      color: white; /* Asegura que el texto siga siendo blanco */
+  }
+
+  /* Estilos para el botón Volver */
+  .btn-back {
+      background-color: #047857; /* Color principal */
+      color: white; /* Texto blanco */
+      border: none; /* Sin borde */
+      padding: 12px 25px; /* Aumenta el tamaño del botón */
+      font-size: 1.2rem; /* Aumenta el tamaño de la fuente */
+      border-radius: 50px; /* Redondea los bordes */
+      transition: background-color 0.3s ease-in-out; /* Transición suave */
+  }
+
+  .btn-back:hover {
+      background-color: #34d399; /* Color al pasar el mouse */
+      color: white; /* Asegura que el texto siga siendo blanco */
+  }
+
+  /* Separa los botones */
+  .d-flex {
+      gap: 30px; /* Aumenta el espaciado entre los botones */
+  }
+
+  /* Estilos para los labels */
+  .form-label {
+      font-size: 1.6rem; /* Aumenta el tamaño de la fuente */
+      font-weight: 700; /* Hace la fuente en negrita */
+      color: white; /* Color blanco */
+      font-family: 'Arial', sans-serif; /* Fuente llamativa */
+  }
+
+  /* Estilos para los inputs */
+  .form-control {
+      background-color: rgba(255, 255, 255, 0.1); /* Fondo transparente para los inputs */
+      color: white; /* Texto blanco */
+      border-radius: 50px; /* Borde redondeado */
+      padding: 10px 15px; /* Aumenta el tamaño de los inputs */
+  }
+
+  .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.7); /* Placeholder más claro */
+  }
+
+  /* Estilos para el textarea (campo de descripción) */
+  .form-textarea {
+      background-color: rgba(255, 255, 255, 0.1); /* Fondo transparente para el textarea */
+      color: white; /* Texto blanco */
+      border-radius: 15px; /* Bordes redondeados */
+      padding: 10px 15px; /* Espaciado interno */
+      width: 100%; /* Hace que ocupe todo el ancho disponible */
+      min-height: 150px; /* Altura mínima para el campo de texto */
+      resize: vertical; /* Permite cambiar el tamaño del campo solo verticalmente */
+  }
+
+  /* Estilos para el fondo negro */
+  .color-fondo {
+    border: 3px solid #d946ef; /* Borde de color personalizado */
+    background-color: black;
+    padding: 30px; /* Reduce el padding del formulario */
+    border-radius: 15px; /* Bordes redondeados para el formulario */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 500px; /* Máximo ancho del formulario */
+    margin: 0 auto; /* Centra el formulario */
+  }
+
+  /* Estilos para el título */
+  h3.h3 {
+    margin-top: 20px; /* Separa el título de la parte superior */
+    color: white; /* Color del título */
+  }
+</style>
+
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-12 color-fondo">
+      <h3 class="h3">Agregar juego</h3>
+      <form action="{{ url_for('guardar_juego') }}" method="post">
+        <div class="mb-4">
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input required type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre">
+        </div>
+        <div class="mb-4">
+          <label for="descripcion" class="form-label">Descripción:</label>
+          <textarea required class="form-textarea" placeholder="Descripción" name="descripcion" id="descripcion"></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="precio" class="form-label">Precio:</label>
+          <input required type="number" class="form-control" placeholder="Precio" name="precio" id="precio">
+        </div>
+        <div class="d-flex">
+          <!-- Botón Guardar -->
+          <button type="submit" class="btn btn-save">Guardar</button>
+          <!-- Botón Volver -->
+          <a href="{{ url_for('juegos') }}" class="btn btn-back">Volver</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

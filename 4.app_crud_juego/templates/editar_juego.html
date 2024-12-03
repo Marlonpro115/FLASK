@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block titulo %}
+Editar juego
+{% endblock %}
+{% block contenido %}
+<style>
+  /* Estilo para la tarjeta */
+  .card-custom {
+      background-color: black; /* Color con transparencia */
+      color: white; /* Texto blanco */
+      border: 3px solid #d946ef; /* Borde de color personalizado */
+      border-radius: 10px; /* Bordes redondeados */
+      padding: 30px; /* Espaciado interno */
+  }
+
+  /* Cabecera de la tarjeta */
+  .card-header {
+      background-color: black; /* Color ligeramente menos transparente */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Borde inferior sutil */
+      padding-bottom: 20px;
+  }
+
+  /* Estilo de los inputs y textarea */
+  .form-control {
+      background-color: rgba(255, 255, 255, 0.1); /* Fondo transparente */
+      color: white; /* Texto blanco */
+      border-radius: 50px; /* Bordes redondeados */
+      padding: 10px 15px; /* Aumenta el tamaño del input */
+  }
+
+  .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.7); /* Placeholder más claro */
+  }
+
+  /* Estilo de las etiquetas */
+  .form-label {
+      font-size: 1.6rem; /* Aumenta el tamaño de las etiquetas */
+      font-weight: bold; /* Negrita */
+      color: white; /* Texto blanco */
+  }
+
+  /* Estilo para el textarea */
+  #descripcion {
+      height: 150px; /* Ajusta la altura del área de texto */
+      width: 100%; /* Hace que el área de texto ocupe todo el ancho disponible */
+  }
+
+  /* Estilos para los botones */
+  .btn-save {
+      background-color: #be123c; /* Color principal */
+      color: white; /* Texto blanco */
+      border: none; /* Sin borde */
+      padding: 12px 25px; /* Aumenta el tamaño del botón */
+      font-size: 1.2rem; /* Tamaño de la fuente */
+      border-radius: 50px; /* Bordes redondeados */
+      transition: background-color 0.3s ease-in-out; /* Transición suave */
+  }
+
+  .btn-save:hover {
+      background-color: #fb7185; /* Cambio de color al pasar el mouse */
+      color: white; /* Asegura que el texto sigue siendo blanco */
+  }
+
+  .btn-back {
+      background-color: #047857; /* Color principal */
+      color: white; /* Texto blanco */
+      border: none; /* Sin borde */
+      padding: 12px 25px; /* Aumenta el tamaño del botón */
+      font-size: 1.2rem; /* Tamaño de la fuente */
+      border-radius: 50px; /* Bordes redondeados */
+      transition: background-color 0.3s ease-in-out; /* Transición suave */
+  }
+
+  .btn-back:hover {
+      background-color: #34d399; /* Cambio de color al pasar el mouse */
+      color: white; /* Asegura que el texto sigue siendo blanco */
+  }
+
+  /* Espaciado entre los botones */
+  .d-flex {
+      gap: 30px; /* Aumenta el espaciado entre los botones */
+  }
+</style>
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-custom shadow-sm">
+                <div class="card-header text-center">
+                    <h3 class="h3">Editar Juego</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('actualizar_juego') }}" method="post">
+                        <input type="hidden" name="id" value="{{ juego['id'] }}">
+
+                        <!-- Campo de Nombre -->
+                        <div class="mb-4">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input value="{{ juego['nombre'] }}" required type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre">
+                        </div>
+
+                        <!-- Campo de Descripción -->
+                        <div class="mb-4">
+                            <label for="descripcion" class="form-label">Descripción:</label>
+                            <textarea required class="form-control" placeholder="Descripción" name="descripcion" id="descripcion">{{ juego['descripcion'] }}</textarea>
+                        </div>
+
+                        <!-- Campo de Precio -->
+                        <div class="mb-4">
+                            <label for="precio" class="form-label">Precio:</label>
+                            <input value="{{ juego['precio'] }}" required type="number" class="form-control" placeholder="Precio" name="precio" id="precio">
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="d-flex">
+                            <button type="submit" class="btn btn-save">Guardar</button>
+                            <a href="{{ url_for('juegos') }}" class="btn btn-back">Volver</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

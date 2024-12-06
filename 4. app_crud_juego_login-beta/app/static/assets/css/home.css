@@ -1,0 +1,368 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-image: url('../video/fondo.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #F4F4F4;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Ajustar el tamaño horizontal de los campos */
+.form-control-wide {
+    width: 100%; /* Asegura que tome todo el ancho disponible */
+    max-width: 500px; /* Establece un ancho máximo opcional */
+    margin: 0 auto; /* Centra el campo si es más pequeño que su contenedor */
+}
+
+/* Ajustar las etiquetas para alinearse mejor con los campos */
+.form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Espaciado entre los campos y su contenedor */
+.styFormDashboard {
+    padding: 20px;
+}
+
+/* Ajustar el contenedor principal */
+.cajaLogin {
+    max-width: 800px; /* Aumenta el ancho máximo */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+
+/* Aumenta el ancho de los campos de entrada */
+.input-largo {
+    width: 90%; /* Ajusta el tamaño según tu preferencia */
+    max-width: 100%; /* Asegura que no exceda el contenedor */
+}
+
+/* Opcional: Personaliza el diseño general del formulario */
+.styFormDashboard {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Opcional: Títulos del formulario */
+.titleDashboard {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* Botón */
+.btn-send {
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+/* Ajusta el margen entre filas */
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+/* Ajusta el color del campo */
+.form-control-lg {
+    font-size: 16px;
+    padding: 10px;
+}
+
+
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.badge {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.6rem;
+}
+
+.sidebar-custom {
+    background-color: black;
+    border: 2px solid purple;
+    border-radius: 10px;
+    width: auto;
+    max-width: 300px;
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+/* Estilo para los enlaces dentro del Sidebar */
+.sidebar-custom .list-unstyled li a {
+    color: #004171;
+    /* Color azul para los enlaces */
+    font-size: 1rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+/* Efecto al pasar el cursor sobre los enlaces */
+.sidebar-custom .list-unstyled li a:hover {
+    color: #f8c000;
+    /* Color dorado al pasar el cursor */
+    transform: scale(1.05);
+    /* Aumenta ligeramente el tamaño */
+    text-decoration: underline;
+    /* Subrayado */
+}
+
+/* Estilo para el icono de Dashboard */
+.sidebar-custom .navbar-brand i {
+    color: #004171;
+    /* Color del icono de Dashboard */
+}
+
+/* Ajustes adicionales */
+.sidebar-custom .navbar-brand span {
+    color: #004171;
+    /* Color del texto "Dashboard" */
+}
+
+
+/* Estilo personalizado para el texto "ASURA GAMES" */
+.asura-games-text {
+    font-size: 1.5rem;
+    /* Tamaño de fuente más grande */
+    font-family: 'Poppins', sans-serif;
+    /* Fuente llamativa */
+    font-weight: 700;
+    /* Negrita */
+    color: #fff;
+    /* Color blanco */
+    transition: color 0.3s, transform 0.3s;
+    /* Efecto de transición */
+}
+
+/* Efecto al pasar el cursor sobre el texto */
+.asura-games-text:hover {
+    color: #f8c000;
+    /* Color dorado al pasar el cursor */
+    transform: scale(1.1);
+    /* Aumenta ligeramente el tamaño */
+    text-decoration: underline;
+    /* Subrayado */
+}
+
+
+#title {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    /* Negrita */
+    color: #343a40;
+    /* Gris oscuro */
+}
+
+form {
+    max-width: 400px;
+    /* Ajusta el ancho del formulario */
+    margin: 0 auto;
+    /* Centra el formulario */
+    background-color: #ffffff;
+    /* Fondo blanco */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+}
+
+form .form-control {
+    border-radius: 5px;
+    /* Bordes redondeados en los campos */
+    border: 1px solid #ced4da;
+    /* Borde gris */
+}
+
+form .btn-send {
+    background-color: #007bff;
+    /* Azul Bootstrap */
+    color: #fff;
+    /* Texto blanco */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+form .btn-send:hover {
+    background-color: #0056b3;
+    /* Azul más oscuro al pasar el ratón */
+}
+
+form a.createUser {
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+form a.createUser:hover {
+    color: #0056b3;
+    /* Azul más oscuro */
+}
+
+form .text-muted {
+    font-size: 0.9rem;
+}
+
+.cajaLogin,
+.formRegisterUser {
+    background-color: #000000;
+    /* Fondo negro */
+    border: 2px solid #800080;
+    /* Borde morado */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    /* Sombra para profundidad */
+    color: #ffffff;
+    /* Texto blanco */
+}
+
+.cajaLogin a,
+.formRegisterUser a {
+    color: #800080;
+    /* Enlaces morados */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cajaLogin a:hover,
+.formRegisterUser a:hover {
+    color: #ffffff;
+    /* Enlaces blancos al pasar el ratón */
+}
+
+.cajaLogin img,
+.formRegisterUser img {
+    border-radius: 50%;
+    /* Imagen con bordes circulares */
+    border: 2px solid #800080;
+    /* Borde morado alrededor de la imagen */
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.form-label {
+    margin-bottom: 0px !important;
+}
+
+.btn-send {
+    border-radius: 25px;
+    background-color: #f1b32c;
+    border: none;
+    color: #555;
+    font-weight: bold;
+}
+
+.btn-send:hover {
+    background-color: #f1b32c;
+    color: #333 !important;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#title {
+    color: #004171;
+    text-align: center;
+    margin-top: -80px;
+    font-weight: 600;
+}
+
+.text-darkblue {
+    color: #004171;
+}
+
+#link_forgot_password {
+    color: #004171;
+    padding: 0px 15px
+}
+
+#link_sign_up {
+    color: #004171;
+}
+
+#link_sign_up:hover {
+    color: #f1b32c;
+    font-weight: 500;
+}
+
+#link_forgot_password:hover {
+    color: #f1b32c;
+    font-weight: 500;
+}
+
+#styleLogin {
+    margin-top: 50px !important;
+    background: #f9f9f9;
+    padding: 30px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.bi-arrow-left-short {
+    font-size: 20px;
+    font-weight: bolder;
+    color: #333;
+}
+
+#here {
+    color: #004171;
+}
+
+#here:hover {
+    color: #f1b32c !important;
+}
+
+.styFormDashboard {
+    background: #f9f9f9;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.logoLogin {
+    width: 100%;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    position: relative;
+    top: -80px;
+    display: block;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 1000px) {
+    #styleLogin {
+        margin: 0 auto;
+        width: 35% !important;
+    }
+}
+
+@media (min-width: 280px) and (max-width: 680px) {
+    #styleLogin {
+        margin: 0 auto;
+        width: 80% !important;
+    }
+}

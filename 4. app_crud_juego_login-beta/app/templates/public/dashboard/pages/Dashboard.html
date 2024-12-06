@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+  <!-- Welcome message -->
+  <div class="col-12 mb-3">
+    <div class="welcome-message p-4 border-left-5px bg-light rounded-lg shadow-sm">
+      <p class="mb-0 text-left">
+        <span class="font-weight-bold text-muted">Hola, <strong>{{ dataLogin.nombre }}</strong></span><br>
+        <span class="text-muted">Nivel: <strong>
+          {% if(dataLogin.tipoLogin == 1) %}
+            <span class="badge badge-primary">Pro-gamer 😅</span>
+          {% else %}
+            <span class="badge badge-secondary">Gamer-Noob 😅</span>
+          {% endif %}
+        </strong></span>
+      </p>
+    </div>
+  </div>
+  
+
+  <!-- Cards -->
+  <div class="col-md-3 mb-4">
+    <div class="card recipe one">
+      <div class="wrapper">
+        <div class="recipe-header d-flex justify-content-between align-items-center">
+          <span>AppGamer</span>
+          <div class="rating">4.8</div>
+        </div>
+        <div class="recipe-info d-flex justify-content-between align-items-center">
+          <span>Ing. Eliseo Vega</span>
+          <div class="time">15 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mb-4">
+    <div class="card recipe two">
+      <div class="wrapper">
+        <div class="recipe-header d-flex justify-content-between align-items-center">
+          <span>AppGamer</span>
+          <div class="rating">4.5</div>
+        </div>
+        <div class="recipe-info d-flex justify-content-between align-items-center">
+          <span>Luisa Ramos</span>
+          <div class="time">11 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mb-4">
+    <div class="card recipe first">
+      <div class="wrapper">
+        <div class="recipe-header d-flex justify-content-between align-items-center">
+          <span>AppGamer</span>
+          <div class="rating">4.8</div>
+        </div>
+        <div class="recipe-info d-flex justify-content-between align-items-center">
+          <span>Carlos Alfaro</span>
+          <div class="time">8 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

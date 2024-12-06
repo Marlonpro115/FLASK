@@ -1,0 +1,24 @@
+<h1 class="mb-4 text-center" id="title">Inicia Sesión</h1>
+<hr class="mb-5 mx-auto" style="width: 50%;">
+
+<form action="{{ url_for('loginUser') }}" method="POST" autocomplete="off" class="p-4 shadow rounded bg-light">
+    <div class="mb-4">
+        <label for="email" class="form-label fw-bold" style="color: black;">Escribe tu Email</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="usuario@ejemplo.com" required>
+    </div>
+    <div class="mb-4">
+        <label for="password" class="form-label fw-bold"style="color: black;">Escribe tu Contraseña</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="••••••••" required>
+    </div>
+
+    <div class="d-grid gap-2 mt-4">
+        <button type="submit" class="btn btn-primary btn-lg btn-send"style="color: black;">Entrar</button>
+    </div>
+
+    <div class="text-center mt-4">
+        <span class="text-muted"style="color: black;">¿No tienes cuenta?</span>
+        <a href="#" id="link_sign_up"style="color: black;" class="createUser text-primary text-decoration-none fw-bold">
+            Crear Cuenta
+        </a>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block titulo %} Recuperar Contraseña {% endblock %}
+
+{% block contenido %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h3 class="text-center mb-4">Recuperar Contraseña</h3>
+
+      {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <form action="{{ url_for('recuperacion') }}" method="post" id="recoveryForm">
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo Electrónico:</label>
+          <input 
+            required 
+            type="email" 
+            class="form-control" 
+            placeholder="Ingrese su correo electrónico" 
+            name="email" 
+            id="email"
+            autocomplete="email"
+            aria-describedby="emailHelp"
+            autofocus>
+          <small id="emailHelp" class="form-text text-muted">Recibirás un enlace para restablecer tu contraseña.</small>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-warning w-100" id="sendButton">
+            <span id="buttonText">Enviar</span>
+            <span class="spinner-border spinner-border-sm d-none" id="loadingSpinner" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="{{ url_for('login') }}" class="text-decoration-none">Volver al inicio de sesión</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

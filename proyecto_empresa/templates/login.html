@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block titulo %} Iniciar Sesión {% endblock %}
+
+{% block contenido %}
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h3 class="text-center">Iniciar Sesión</h3>
+      
+      {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <form action="{{ url_for('login') }}" method="post">
+        <div class="mb-3">
+          <label for="usuario" class="form-label">Usuario:</label>
+          <input 
+            required 
+            type="text" 
+            class="form-control" 
+            placeholder="Ingrese su usuario" 
+            name="usuario" 
+            id="usuario" 
+            autocomplete="username"
+            autofocus>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña:</label>
+          <div class="input-group">
+            <input 
+              required 
+              type="password" 
+              class="form-control" 
+              placeholder="Ingrese su contraseña" 
+              name="password" 
+              id="password"
+              autocomplete="current-password">
+            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-success w-100">Ingresar</button>
+        </div>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="{{ url_for('recuperacion') }}" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+        <br>
+        <a href="{{ url_for('registro') }}" class="text-decoration-none">Crear una cuenta</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

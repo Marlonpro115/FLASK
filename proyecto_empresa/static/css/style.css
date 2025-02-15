@@ -1,0 +1,21 @@
+body {
+    background-color: #FFC72C;
+}
+
+.navbar {
+    background: #DA291C;
+}
+
+.btn-primary {
+    background-color: #FFC72C;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #FFD700;
+}
+
+.footer {
+    background: #DA291C;
+    color: white;
+}

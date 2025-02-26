@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}Categorías - McDonald's{% endblock %}
+
+{% block contenido %}
+<div class="mcd-categorias-container">
+    <h2 class="mcd-titulo">Explora nuestras categorías</h2>
+    <div class="mcd-grid">
+        {% set categorias = [
+        {"nombre": "Hamburguesas", "imagen": "static/img/hamburguesa.png"},
+        {"nombre": "Papas Fritas", "imagen": "static/img/papas.png"},
+        {"nombre": "Bebidas", "imagen": "static/img/bebidas.png"},
+        {"nombre": "Postres", "imagen": "static/img/postres.png"},
+        {"nombre": "Combos", "imagen": "static/img/combos.png"},
+        {"nombre": "Desayunos", "imagen": "static/img/desayunos.png"}
+        ] %}
+
+        {% for categoria in categorias %}
+        <div class="mcd-card">
+            <img src="{{ url_for('static', filename=categoria['imagen'].split('static/')[1]) }}" class="mcd-card-img"
+                alt="{{ categoria['nombre'] }}">
+            <div class="mcd-card-body">
+                <h5 class="mcd-card-title">{{ categoria['nombre'] }}</h5>
+                <p class="mcd-card-text">Descubre nuestra deliciosa selección de {{ categoria['nombre'].lower() }}.</p>
+                <a href="#" class="mcd-btn">Ver más</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

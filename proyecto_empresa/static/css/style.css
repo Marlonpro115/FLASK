@@ -1,0 +1,794 @@
+body {
+    color: #222;
+    /* Texto oscuro por defecto */
+    background-color: #fff;
+    /* Fondo claro */
+}
+
+.navbar,
+.footer {
+    background-color: #111;
+    /* Fondo oscuro para el navbar y footer */
+    color: white;
+}
+
+.navbar .nav-link,
+.footer p {
+    color: white !important;
+}
+
+.btn-primary {
+    background-color: #ffc107;
+    /* Amarillo McDonald's */
+    border-color: #ffc107;
+    color: #111;
+    /* Texto oscuro */
+}
+
+/* Modo oscuro automático si el fondo es oscuro */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #111;
+        color: white;
+    }
+
+    .navbar,
+    .footer {
+        background-color: black;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+        color: black;
+    }
+}
+
+.dark-mode {
+    background-color: #111;
+    color: white;
+}
+
+.dark-mode .navbar,
+.dark-mode .footer {
+    background-color: black;
+}
+
+.dark-mode .nav-link {
+    color: white !important;
+}
+
+.card-img-top {
+    width: 100%;
+    /* Hace que todas las imágenes ocupen el ancho de la tarjeta */
+    height: 200px;
+    /* Altura fija para uniformidad */
+    object-fit: cover;
+    /* Recorta la imagen para llenar el espacio sin deformarse */
+    border-top-left-radius: 10px;
+    /* Redondeo opcional para que coincida con la tarjeta */
+    border-top-right-radius: 10px;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    /* Hace que la tarjeta crezca ligeramente */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    /* Agrega una sombra más pronunciada */
+}
+
+.card .btn {
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.card .btn:hover {
+    transform: scale(1.1);
+    /* Hace que el botón crezca ligeramente */
+    background-color: #c82333;
+    /* Oscurece el color del botón para un efecto visual */
+}
+
+.btn-lg {
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-lg:hover {
+    transform: scale(1.1);
+    /* Hace que el botón crezca ligeramente */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Agrega una sombra pronunciada */
+    background-color: #ffcc00;
+    /* Hace que el amarillo sea más vibrante */
+}
+
+/* Efecto para los enlaces de la barra de navegación */
+.nav-link-custom {
+    position: relative;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link-custom::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ffcc00;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.nav-link-custom:hover {
+    color: #ffcc00;
+}
+
+.nav-link-custom:hover::after {
+    width: 100%;
+}
+
+/* Botón de Iniciar Sesión mejorado */
+.btn-login {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, #ff9900, #ff6600);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 153, 0, 0.6);
+}
+
+/* Agregar un ícono de usuario en el botón */
+.btn-login i {
+    font-size: 18px;
+}
+
+/*//////Login
+
+/* Contenedor principal del inicio de sesión */
+.contenedor-sesion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    /* Reducir la altura mínima para subirlo */
+    background: #f8f9fa;
+    padding: 40px;
+}
+
+.columna-sesion {
+    max-width: 600px;
+    width: 100%;
+    margin-top: -50px;
+    /* Subir el formulario */
+}
+
+/* Estructura central */
+.fila-sesion {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Tarjeta de inicio de sesión */
+.tarjeta-sesion {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Título */
+.titulo-sesion {
+    font-size: 26px;
+    font-weight: bold;
+    color: #DA291C;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Campos de entrada */
+.grupo-campo {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.etiqueta-sesion {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.campo-sesion {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 2px solid #DA291C;
+    font-size: 16px;
+}
+
+.campo-sesion:focus {
+    border-color: #FFC72C;
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 199, 44, 0.8);
+}
+
+/* Grupo de contraseña con botón */
+.grupo-entrada {
+    display: flex;
+    align-items: center;
+}
+
+.boton-ver-sesion {
+    background: transparent;
+    border: none;
+    color: #DA291C;
+    font-size: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Botón de acceso */
+.boton-sesion {
+    width: 100%;
+    padding: 14px;
+    background: #FFC72C;
+    color: #DA291C;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.boton-sesion:hover {
+    background: #DA291C;
+    color: white;
+}
+
+/* Alertas */
+.alerta-sesion {
+    padding: 12px;
+    background: #DA291C;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.cerrar-alerta {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+}
+
+/* Enlaces */
+.enlaces-sesion {
+    margin-top: 15px;
+}
+
+.enlace-sesion {
+    color: #DA291C;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.enlace-sesion:hover {
+    text-decoration: underline;
+    color: #FFC72C;
+}
+
+/*Recuperacion*/
+
+/* Contenedor principal con más altura y mejor alineación */
+.contenedor-recuperacion {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Alineado más arriba */
+    height: 90vh;
+    /* Menos altura para que quede un poco más arriba */
+    background: #f8f9fa;
+    padding: 40px 20px;
+}
+
+/* Tarjeta más grande */
+.tarjeta-recuperacion {
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    /* Más grande */
+    width: 100%;
+    /* Se adapta mejor */
+    margin-top: 5vh;
+    /* Ajustado para subir un poco más */
+}
+
+/* Título más grande */
+.titulo-recuperacion {
+    font-size: 26px;
+    font-weight: bold;
+    color: #DA291C;
+    margin-bottom: 25px;
+}
+
+/* Campos de entrada más grandes */
+.grupo-campo {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.etiqueta-recuperacion {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.campo-recuperacion {
+    width: 100%;
+    padding: 14px;
+    /* Más grande */
+    border-radius: 10px;
+    border: 2px solid #DA291C;
+    font-size: 18px;
+    /* Texto más grande */
+    transition: box-shadow 0.3s ease;
+}
+
+.campo-recuperacion:focus {
+    border-color: #FFC72C;
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 199, 44, 0.8);
+}
+
+/* Mensaje de ayuda */
+.texto-ayuda {
+    font-size: 16px;
+    color: #6c757d;
+    display: block;
+    margin-top: 6px;
+}
+
+/* Botón más grande */
+.boton-recuperacion {
+    width: 100%;
+    padding: 16px;
+    background: #FFC72C;
+    color: #DA291C;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    /* Más grande */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.boton-recuperacion:hover {
+    background: #DA291C;
+    color: white;
+}
+
+/* Alertas */
+.alerta-recuperacion {
+    padding: 14px;
+    background: #DA291C;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.cerrar-alerta {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+}
+
+/* Enlaces */
+.enlaces-recuperacion {
+    margin-top: 20px;
+}
+
+.enlace-recuperacion {
+    color: #DA291C;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.enlace-recuperacion:hover {
+    text-decoration: underline;
+    color: #FFC72C;
+}
+
+/*Registro*/
+
+/* Contenedor principal */
+.contenedor-registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background: #f8f9fa;
+    padding: 40px;
+}
+
+.columna-registro {
+    max-width: 600px;
+    width: 100%;
+    margin-top: -50px;
+    /* Ajuste visual */
+}
+
+/* Estructura central */
+.fila-registro {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Tarjeta de registro */
+.tarjeta-registro {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Título */
+.titulo-registro {
+    font-size: 26px;
+    font-weight: bold;
+    color: #DA291C;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Campos de entrada */
+.grupo-campo {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.etiqueta-registro {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.campo-registro {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 2px solid #DA291C;
+    font-size: 16px;
+    background: #FFF7E6;
+}
+
+.campo-registro:focus {
+    border-color: #FFC72C;
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 199, 44, 0.8);
+}
+
+/* Grupo de contraseña con botón */
+.grupo-entrada {
+    display: flex;
+    align-items: center;
+}
+
+.boton-ver-registro {
+    background: transparent;
+    border: none;
+    color: #DA291C;
+    font-size: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Botón de registro */
+.boton-registro {
+    width: 100%;
+    padding: 14px;
+    background: #FFC72C;
+    color: #DA291C;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.boton-registro:hover {
+    background: #DA291C;
+    color: white;
+}
+
+/* Alertas */
+.alerta-registro {
+    padding: 12px;
+    background: #DA291C;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.cerrar-alerta {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+}
+
+/* Enlaces */
+.enlaces-registro {
+    margin-top: 15px;
+}
+
+.enlace-registro {
+    color: #DA291C;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.enlace-registro:hover {
+    text-decoration: underline;
+    color: #FFC72C;
+}
+
+/*dashboard
+
+/* Navbar personalizado */
+.mcd-navbar {
+    background-color: #ffcc00;
+}
+
+.mcd-navbar .nav-link-custom {
+    color: #d32f2f !important;
+    font-weight: 500;
+}
+
+.mcd-navbar .btn-login {
+    background-color: #d32f2f;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Contenedor principal */
+.mcd-content-wrapper {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Tarjetas del dashboard */
+.mcd-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.mcd-card:hover {
+    transform: scale(1.03);
+}
+
+.mcd-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.mcd-card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.mcd-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #d32f2f;
+}
+
+.mcd-card-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.mcd-card-btn {
+    background-color: #ffcc00;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.mcd-card-btn:hover {
+    background-color: #d32f2f;
+    color: white;
+}
+
+/* Footer */
+.mcd-footer {
+    background-color: #d32f2f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+
+/*Categorias*/
+
+/* Estilos generales */
+.mcd-categorias-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.mcd-titulo {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d41c1c;
+    margin-bottom: 20px;
+}
+
+/* Grid de categorías */
+.mcd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Tarjetas de categorías */
+.mcd-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+.mcd-card:hover {
+    transform: translateY(-5px);
+}
+
+.mcd-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.mcd-card-body {
+    padding: 15px;
+}
+
+.mcd-card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #d41c1c;
+    margin-bottom: 10px;
+}
+
+.mcd-card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Botón de gestión */
+.mcd-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #ffcc00;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.mcd-btn:hover {
+    background-color: #ffad00;
+}
+
+/*menu mcdonasl*/
+
+.bg-light {
+    background-color: #fff8e1 !important;
+}
+
+/* Estilos para los encabezados */
+h2, h3 {
+    color: #d62300;
+}
+
+/* Botones personalizados */
+.btn-warning {
+    background-color: #ffbc0d;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.btn-warning:hover {
+    background-color: #e6a500;
+}
+
+.btn-danger {
+    background-color: #d62300;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-danger:hover {
+    background-color: #b81e00;
+}
+
+.btn-primary {
+    background-color: #0066b2;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #004c8c;
+}
+
+/* Tabla personalizada */
+.table-dark {
+    background-color: #d62300 !important;
+    color: white;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fff3cd;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #fff8e1;
+}

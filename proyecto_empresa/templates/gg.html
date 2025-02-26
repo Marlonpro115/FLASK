@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFC72C; /* Amarillo McDonald's */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-color: #DA291C; /* Rojo McDonald's */
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .add-button {
+            background-color: #DA291C;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 15px;
+            transition: 0.2s;
+        }
+        .add-button:hover {
+            background-color: #b71c1c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #DA291C;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">📋 Gestión de Productos</div>
+    <div class="container">
+        <button class="add-button">+ Agregar Producto</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Big Mac</td>
+                    <td>Hamburguesas</td>
+                    <td>$4.99</td>
+                    <td>✏️ 🗑️</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Papas Fritas Grandes</td>
+                    <td>Acompañamientos</td>
+                    <td>$2.99</td>
+                    <td>✏️ 🗑️</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>McFlurry Oreo</td>
+                    <td>Postres</td>
+                    <td>$3.49</td>
+                    <td>✏️ 🗑️</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

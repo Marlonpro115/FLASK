@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block titulo %}Editar Empleado{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center text-primary">Editar Empleado</h2>
+        <form action="{{ url_for('editar_empleado', empleado_id=empleado.id) }}" method="POST">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ empleado.nombre }}"
+                        required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido"
+                        value="{{ empleado.apellido }}" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ empleado.email }}"
+                        required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono"
+                        value="{{ empleado.telefono }}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="cargo" class="form-label">Cargo</label>
+                    <select class="form-select" id="cargo" name="cargo" required>
+                        {% for opcion in ['Cajero', 'Cocinero', 'Gerente', 'Supervisor', 'Limpieza', 'Repartidor'] %}
+                        <option value="{{ opcion }}" {% if empleado.cargo==opcion %}selected{% endif %}>{{ opcion }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="sucursal_id" class="form-label">Sucursal</label>
+                    <select class="form-select" id="sucursal_id" name="sucursal_id" required>
+                        {% for sucursal in sucursales %}
+                        <option value="{{ sucursal.id }}" {% if empleado.sucursal_id==sucursal.id %}selected{% endif %}>
+                            {{ sucursal.nombre }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="salario" class="form-label">Salario</label>
+                    <input type="number" class="form-control" id="salario" name="salario" step="0.01"
+                        value="{{ empleado.salario }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="fecha_contratacion" class="form-label">Fecha de Contratación</label>
+                    <input type="date" class="form-control" id="fecha_contratacion" name="fecha_contratacion"
+                        value="{{ empleado.fecha_contratacion }}" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="horario" class="form-label">Horario</label>
+                    <input type="text" class="form-control" id="horario" name="horario" value="{{ empleado.horario }}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <select class="form-select" id="estado" name="estado" required>
+                        <option value="Activo" {% if empleado.estado=='Activo' %}selected{% endif %}>Activo</option>
+                        <option value="Inactivo" {% if empleado.estado=='Inactivo' %}selected{% endif %}>Inactivo
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                <a href="{{ url_for('empleados') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Estilos generales */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    /* Contenedor del formulario */
+    .empleados-form-container,
+    .empleados-edit-container {
+        background: #fff;
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-top: 5px solid #DA291C;
+        /* Rojo McDonald's */
+    }
+
+    /* Título */
+    .empleados-titulo {
+        text-align: center;
+        color: #DA291C;
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Etiquetas */
+    label {
+        font-weight: bold;
+        color: #333;
+        margin-top: 10px;
+    }
+
+    /* Inputs y Select */
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Botón de guardar */
+    .empleados-btn-guardar {
+        width: 100%;
+        background-color: #FFC72C;
+        /* Amarillo McDonald's */
+        color: black;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: 0.3s;
+    }
+
+    .empleados-btn-guardar:hover {
+        background-color: #DA291C;
+        color: white;
+    }
+
+    /* Botón de cancelar */
+    .btn-cancelar {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        color: #DA291C;
+        font-weight: bold;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-cancelar:hover {
+        color: black;
+    }
+</style>
+{% endblock %}

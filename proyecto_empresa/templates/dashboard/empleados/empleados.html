@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block titulo %}Administrar Empleados - McDonald's{% endblock %}
+
+{% block contenido %}
+<div class="empleados-container">
+    <h2 class="empleados-titulo">
+        <img src="{{ url_for('static', filename='img/mcdonalds_logo.png') }}" alt="McDonald's" class="mcd-logo">
+        Gestión de Empleados
+    </h2>
+    <a href="{{ url_for('agregar_empleado') }}" class="empleados-btn-agregar">➕ Agregar Empleado</a>
+
+    <div class="empleados-tabla-container">
+        <table class="empleados-tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Cargo</th>
+                    <th>Sucursal</th>
+                    <th>Salario</th>
+                    <th>Fecha Contratación</th>
+                    <th>Horario</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if empleados %}
+                {% for empleado in empleados %}
+                <tr>
+                    <td>#{{ empleado.id }}</td>
+                    <td>{{ empleado.nombre }}</td>
+                    <td>{{ empleado.apellido }}</td>
+                    <td>{{ empleado.email }}</td>
+                    <td>{{ empleado.telefono }}</td>
+                    <td><span class="empleado-cargo">{{ empleado.cargo }}</span></td>
+                    <td>{{ empleado.sucursal.nombre }}</td>
+                    <td>$ {{ "{:,.2f}".format(empleado.salario) }}</td>
+                    <td>{{ empleado.fecha_contratacion.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ empleado.horario }}</td>
+                    <td>
+                        <span class="empleado-estado {{ 'activo' if empleado.estado == 'Activo' else 'inactivo' }}">
+                            {{ empleado.estado }}
+                        </span>
+                    </td>
+                    <td class="empleados-acciones">
+                        <a href="{{ url_for('editar_empleado', empleado_id=empleado.id) }}" class="btn-editar">
+                            ✏️ Editar
+                        </a>
+                        <form action="{{ url_for('eliminar_empleado', empleado_id=empleado.id) }}" method="POST"
+                            class="eliminar-form"
+                            onsubmit="return confirm('¿Eliminar a {{ empleado.nombre }} {{ empleado.apellido }}?');">
+                            <button type="submit" class="btn-eliminar">🗑️ Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="12" class="empleados-texto-centrado">No hay empleados registrados.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .empleados-container {
+        max-width: 90%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .mcd-logo {
+        height: 50px;
+        vertical-align: middle;
+    }
+
+    .empleados-titulo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffbc0d;
+    }
+
+    .empleados-btn-agregar {
+        display: inline-block;
+        background: #ffbc0d;
+        color: #fff;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .empleados-tabla {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .empleados-tabla th,
+    .empleados-tabla td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .empleados-tabla th {
+        background: #ffbc0d;
+        color: white;
+    }
+
+    .empleados-tabla tbody tr:hover {
+        background: #f7f7f7;
+    }
+
+    .empleado-cargo {
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+
+    .empleado-estado {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .activo {
+        background: #28a745;
+        color: white;
+    }
+
+    .inactivo {
+        background: #dc3545;
+        color: white;
+    }
+
+    .empleados-acciones {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn-editar,
+    .btn-eliminar {
+        padding: 6px 12px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .btn-editar {
+        background: #007bff;
+        color: white;
+    }
+
+    .btn-editar:hover {
+        background: #0056b3;
+    }
+
+    .btn-eliminar {
+        background: #dc3545;
+        color: white;
+    }
+
+    .btn-eliminar:hover {
+        background: #b52a37;
+    }
+
+    .eliminar-form {
+        display: inline;
+    }
+</style>
+{% endblock %}

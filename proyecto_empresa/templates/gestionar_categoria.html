@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block titulo %} {{ categoria.nombre|title }}{% endblock %}
+
+{% block contenido %}
+<div class="mcd-productos-container">
+    <h2 class="mcd-titulo">Productos en la categoría de {{ categoria.nombre|title }}</h2>
+
+    <!-- Sección para agregar productos -->
+    <div class="mcd-agregar-producto">
+        <h3 class="mcd-subtitulo">Agregar nuevo producto</h3>
+        <form class="mcd-form" action="{{ url_for('agregar_producto', categoria_id=categoria.id) }}" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre del producto" required>
+            <input type="number" name="precio" placeholder="Precio" step="0.01" min="0.01" required>
+            <button type="submit" class="mcd-btn mcd-btn-primary">Agregar</button>
+        </form>
+    </div>
+
+    <!-- Tabla de productos -->
+    {% if categoria.productos %}
+    <table class="mcd-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in categoria.productos %}
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>${{ producto.precio }}</td>
+                <td>
+                    <a href="{{ url_for('editar_producto', producto_id=producto.id) }}" class="mcd-btn">Editar</a>
+                    <form action="{{ url_for('eliminar_producto', producto_id=producto.id) }}" method="POST"
+                        style="display:inline;">
+                        <button type="submit" class="mcd-btn-danger"
+                            onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="mcd-texto-centrado">No hay productos en esta categoría.</p>
+    {% endif %}
+</div>
+
+<style>
+    /* Contenedor principal */
+    .mcd-productos-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Títulos */
+    .mcd-titulo {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .mcd-subtitulo {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    /* Estilo para la tabla */
+    .mcd-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        background: #f8f8f8;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .mcd-table th,
+    .mcd-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .mcd-table th {
+        background: #007bff;
+        color: white;
+        font-weight: bold;
+    }
+
+    .mcd-table tbody tr:hover {
+        background: #f1f1f1;
+    }
+
+    /* Botones */
+    .mcd-btn {
+        display: inline-block;
+        padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .mcd-btn-primary {
+        background: #28a745;
+        color: white;
+    }
+
+    .mcd-btn-primary:hover {
+        background: #218838;
+    }
+
+    .mcd-btn-danger {
+        background: #dc3545;
+        color: white;
+    }
+
+    .mcd-btn-danger:hover {
+        background: #c82333;
+    }
+
+    .mcd-btn:hover {
+        opacity: 0.8;
+    }
+
+    /* Formulario */
+    .mcd-agregar-producto {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f8f8f8;
+        border-radius: 8px;
+    }
+
+    .mcd-form input {
+        width: calc(100% - 20px);
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .mcd-form button {
+        width: 100%;
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}

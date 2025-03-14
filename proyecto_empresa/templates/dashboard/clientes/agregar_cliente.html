@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block titulo %}Agregar Cliente{% endblock %}
+
+{% block contenido %}
+<div class="clientes-form-container">
+    <h2 class="clientes-titulo">🛍️ Agregar Nuevo Cliente 🏡</h2>
+
+    <form action="{{ url_for('agregar_cliente') }}" method="POST" class="clientes-form">
+
+        <fieldset>
+            <legend>📋 Información Personal</legend>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required pattern="[A-Za-zÀ-ÿ\s]+"
+                title="Solo letras y espacios permitidos">
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required pattern="[A-Za-zÀ-ÿ\s]+"
+                title="Solo letras y espacios permitidos">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="ejemplo@email.com">
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9,15}"
+                title="Ingrese un número válido (9 a 15 dígitos)" placeholder="Ej: 123456789">
+        </fieldset>
+
+        <fieldset>
+            <legend>🏠 Información de Residencia</legend>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Calle, Número, Departamento">
+
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" name="ciudad" pattern="[A-Za-zÀ-ÿ\s]+"
+                title="Solo letras y espacios permitidos">
+        </fieldset>
+
+        <button type="submit" class="clientes-btn-guardar">✅ Guardar Cliente</button>
+    </form>
+</div>
+
+<style>
+    .clientes-form-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .clientes-titulo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #00796b;
+        margin-bottom: 20px;
+    }
+
+    .clientes-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Alinea los labels a la izquierda */
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-align: left; /* Asegura que el texto esté alineado a la izquierda */
+        width: 100%; /* Para que ocupe toda la línea y no quede centrado */
+    }
+
+    fieldset {
+        border: 2px solid #4db6ac;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    legend {
+        font-size: 18px;
+        font-weight: bold;
+        color: #00796b;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 15px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border 0.3s;
+    }
+
+    input:focus {
+        border: 2px solid #00796b;
+        outline: none;
+    }
+
+    .clientes-btn-guardar {
+        background: #00796b;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .clientes-btn-guardar:hover {
+        background: #004d40;
+    }
+
+    @media (max-width: 768px) {
+        .clientes-form-container {
+            width: 90%;
+        }
+    }
+</style>
+{% endblock %}

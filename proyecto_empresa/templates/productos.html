@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block titulo %} Productos {% endblock %}
+
+{% block contenido %}
+<h1 class="text-center">Nuestros Productos</h1>
+
+{% for categoria in categorias %}
+<div class="categoria">
+    <h2>{{ categoria.nombre }}</h2>
+    <div class="productos-container">
+        {% for producto in categoria.productos %}
+        <div class="producto">
+            <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" class="producto-img">
+            <h3>{{ producto.nombre }}</h3>
+            <p>{{ producto.descripcion }}</p>
+            <p class="precio">${{ producto.precio }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+<style>
+    .productos-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .producto {
+        border: 1px solid #ddd;
+        padding: 15px;
+        width: 250px;
+        text-align: center;
+        border-radius: 8px;
+    }
+    .producto-img {
+        width: 100%;
+        height: auto;
+        max-height: 150px;
+        object-fit: cover;
+    }
+    .precio {
+        font-weight: bold;
+        color: #28a745;
+    }
+</style>
+
+{% endblock %}

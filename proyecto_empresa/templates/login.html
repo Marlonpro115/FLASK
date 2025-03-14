@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block titulo %} Iniciar Sesión {% endblock %}
+
+{% block contenido %}
+<div class="contenedor-sesion">
+  <div class="fila-sesion">
+    <div class="columna-sesion">
+      <div class="tarjeta-sesion">
+        <h3 class="titulo-sesion">
+          🍔 Iniciar Sesión
+        </h3>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alerta-sesion alerta-{{ category }}">
+          {{ message }}
+          <button type="button" class="cerrar-alerta" data-bs-dismiss="alerta">X</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('login') }}" method="post" novalidate>
+          <div class="grupo-campo">
+            <label for="usuario" class="etiqueta-sesion">👤 Email:</label>
+            <input required type="email" class="campo-sesion" placeholder="Ingrese su email" name="usuario" id="usuario"
+              autocomplete="username" autofocus>
+          </div>
+
+          <div class="grupo-campo">
+            <label for="password" class="etiqueta-sesion">🔒 Contraseña:</label>
+            <div class="grupo-entrada">
+              <input required type="password" class="campo-sesion" placeholder="Ingrese su contraseña" name="password"
+                id="password" autocomplete="current-password">
+              <button class="boton-ver-sesion" type="button" id="togglePassword">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Selector de Rol con Botones -->
+          <div class="grupo-campo">
+            <label class="etiqueta-sesion">⚡ Ingresar como:</label>
+            <div class="grupo-botones">
+              <button type="button" class="boton-rol activo" id="btnUsuario">👥 Usuario</button>
+              <button type="button" class="boton-rol" id="btnAdmin">🛠️ Administrador</button>
+            </div>
+            <input type="hidden" name="rol" id="rol" value="usuario">
+          </div>
+
+          <button type="submit" class="boton-sesion">🍟 Ingresar</button>
+        </form>
+
+        <div class="enlaces-sesion">
+          <a href="{{ url_for('recuperacion') }}" class="enlace-sesion">¿Olvidaste tu contraseña?</a>
+          <br>
+          <a href="{{ url_for('registro') }}" class="enlace-sesion">Crear una cuenta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript para cambiar el rol dinámicamente -->
+<script>
+  document.getElementById("btnUsuario").addEventListener("click", function () {
+    seleccionarRol("user"); // Asegúrate de que este valor sea el correcto en la BD
+  });
+
+  document.getElementById("btnAdmin").addEventListener("click", function () {
+    seleccionarRol("admin"); // Usa "admin" en lugar de "administrador" si es necesario
+  });
+
+
+  function seleccionarRol(rol) {
+    document.getElementById("rol").value = rol;
+
+    let btnUsuario = document.getElementById("btnUsuario");
+    let btnAdmin = document.getElementById("btnAdmin");
+
+    if (rol === "usuario") {
+      btnUsuario.classList.add("activo");
+      btnAdmin.classList.remove("activo");
+    } else {
+      btnAdmin.classList.add("activo");
+      btnUsuario.classList.remove("activo");
+    }
+  }
+
+   // Función para cerrar las alertas al hacer clic en el botón "X"
+   document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".cerrar-alerta").forEach(boton => {
+      boton.addEventListener("click", function () {
+        this.parentElement.style.display = "none"; // Oculta el mensaje de alerta
+      });
+    });
+  });
+</script>
+
+<!-- CSS para mejorar la apariencia de los botones de selección -->
+<style>
+  .grupo-botones {
+    display: flex;
+    gap: 10px;
+  }
+
+  .boton-rol {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ccc;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .boton-rol:hover {
+    background-color: #ddd;
+  }
+
+  .boton-rol.activo {
+    background-color: #28a745;
+    color: white;
+    border-color: #218838;
+  }
+</style>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block titulo %}Editar Venta{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center text-primary">Editar Venta</h2>
+        <form action="{{ url_for('editar_venta', venta_id=venta.id) }}" method="POST">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="cliente_id" class="form-label">Cliente</label>
+                    <select class="form-control" id="cliente_id" name="cliente_id">
+                        {% for cliente in clientes %}
+                        <option value="{{ cliente.id }}" {% if cliente.id == venta.cliente_id %}selected{% endif %}>
+                            {{ cliente.nombre }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="empleado_id" class="form-label">Empleado</label>
+                    <select class="form-control" id="empleado_id" name="empleado_id">
+                        {% for empleado in empleados %}
+                        <option value="{{ empleado.id }}" {% if empleado.id == venta.empleado_id %}selected{% endif %}>
+                            {{ empleado.nombre }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="sucursal_id" class="form-label">Sucursal</label>
+                    <select class="form-control" id="sucursal_id" name="sucursal_id" required>
+                        {% for sucursal in sucursales %}
+                        <option value="{{ sucursal.id }}" {% if sucursal.id == venta.sucursal_id %}selected{% endif %}>
+                            {{ sucursal.nombre }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="fecha_venta" class="form-label">Fecha de Venta</label>
+                    <input type="datetime-local" class="form-control" id="fecha_venta" name="fecha_venta" value="{{ venta.fecha_venta.strftime('%Y-%m-%dT%H:%M') }}" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="total" class="form-label">Total</label>
+                    <input type="number" step="0.01" class="form-control" id="total" name="total" value="{{ venta.total }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="metodo_pago" class="form-label">Método de Pago</label>
+                    <select class="form-control" id="metodo_pago" name="metodo_pago" required>
+                        <option value="Efectivo" {% if venta.metodo_pago == 'Efectivo' %}selected{% endif %}>Efectivo</option>
+                        <option value="Tarjeta" {% if venta.metodo_pago == 'Tarjeta' %}selected{% endif %}>Tarjeta</option>
+                        <option value="Transferencia" {% if venta.metodo_pago == 'Transferencia' %}selected{% endif %}>Transferencia</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                <a href="{{ url_for('ventas') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

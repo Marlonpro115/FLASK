@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Menú de McDonald's{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+  <div class="text-center p-4 bg-light rounded shadow-sm">
+    <h2 class="fw-bold">Categoría: Hamburguesas</h2>
+    <p>¡Bienvenido a nuestro menú de hamburguesas!</p>
+  </div>
+
+  <div class="mt-4 p-4 bg-light rounded shadow-sm">
+    <h3 class="fw-bold text-center">Productos</h3>
+    <div class="text-center my-3">
+      <button class="btn btn-warning"><i class="bi bi-plus-lg"></i> Añadir Producto</button>
+    </div>
+    <table class="table table-striped text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Referencia</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>MC-101</td>
+          <td>Big Mac</td>
+          <td>$15.000</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>MC-102</td>
+          <td>Cuarto de Libra</td>
+          <td>$16.500</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-center">2 Productos</p>
+  </div>
+
+  <div class="mt-4 p-4 bg-light rounded shadow-sm text-center">
+    <h3 class="fw-bold">Empleados</h3>
+    <button class="btn btn-danger">Ver Empleados</button>
+  </div>
+
+  <div class="mt-4 p-4 bg-light rounded shadow-sm text-center">
+    <h3 class="fw-bold">Clientes</h3>
+    <button class="btn btn-primary">Ver Clientes</button>
+  </div>
+</div>
+{% endblock %}

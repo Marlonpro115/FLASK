@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block titulo %} Registro {% endblock %}
+
+{% block contenido %}
+<div class="contenedor-registro">
+  <div class="fila-registro">
+    <div class="columna-registro">
+      <div class="tarjeta-registro">
+        <h3 class="titulo-registro">🍔 Crear Cuenta</h3>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alerta-registro alerta-{{ category }}">
+          {{ message }}
+          <button type="button" class="cerrar-alerta" data-bs-dismiss="alerta">X</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('registro') }}" method="post" novalidate>
+          <div class="grupo-campo">
+            <label for="tipo_documento" class="etiqueta-registro">📄 Tipo de Documento:</label>
+            <select name="tipo_documento" id="tipo_documento" class="campo-registro">
+              <option value="" selected>Seleccione...</option>
+              <option value="dni">DNI</option>
+              <option value="pasaporte">Pasaporte</option>
+              <option value="cedula">Cédula</option>
+            </select>
+          </div>
+
+          <div class="grupo-campo">
+            <label for="numero_documento" class="etiqueta-registro">🔢 Número de Documento:</label>
+            <input required type="text" class="campo-registro" placeholder="Ingrese su documento"
+              name="numero_documento" id="numero_documento">
+          </div>
+
+          <div class="grupo-campo">
+            <label for="pais_origen" class="etiqueta-registro">🌎 País de Origen:</label>
+            <input required type="text" class="campo-registro" placeholder="Ingrese su país de origen"
+              name="pais_origen" id="pais_origen">
+          </div>
+
+          <div class="grupo-campo">
+            <label for="primer_nombre" class="etiqueta-registro">👤 Primer Nombre:</label>
+            <input required type="text" class="campo-registro" placeholder="Ingrese su primer nombre"
+              name="primer_nombre" id="primer_nombre">
+          </div>
+
+          <div class="grupo-campo">
+            <label for="segundo_nombre" class="etiqueta-registro">👤 Segundo Nombre (Opcional):</label>
+            <input type="text" class="campo-registro" placeholder="Ingrese su segundo nombre (opcional)"
+              name="segundo_nombre" id="segundo_nombre">
+          </div>
+
+          <div class="grupo-campo">
+            <label for="primer_apellido" class="etiqueta-registro">👤 Primer Apellido:</label>
+            <input required type="text" class="campo-registro" placeholder="Ingrese su primer apellido"
+              name="primer_apellido" id="primer_apellido">
+          </div>
+
+          <div class="grupo-campo">
+            <label for="segundo_apellido" class="etiqueta-registro">👤 Segundo Apellido (Opcional):</label>
+            <input type="text" class="campo-registro" placeholder="Ingrese su segundo apellido (opcional)"
+              name="segundo_apellido" id="segundo_apellido">
+          </div>
+
+          <div class="grupo-campo">
+            <label for="telefono" class="etiqueta-registro">📞 Número de Teléfono (Opcional):</label>
+            <input type="tel" class="campo-registro" placeholder="Ingrese su número de teléfono (opcional)"
+              name="telefono" id="telefono">
+          </div>
+
+          <div class="grupo-campo">
+            <label for="rol" class="etiqueta-registro">🔹 Tipo de Cuenta:</label>
+            <select name="rol" id="rol" class="campo-registro">
+              <option value="usuario">Usuario</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>   
+
+          <div class="grupo-campo">
+            <label for="email" class="etiqueta-registro">📧 Correo Electrónico:</label>
+            <input required type="email" class="campo-registro" placeholder="Ingrese su correo" name="email" id="email"
+              autocomplete="email">
+          </div>
+
+          <div class="grupo-campo">
+            <label for="password" class="etiqueta-registro">🔒 Contraseña:</label>
+            <div class="grupo-entrada">
+              <input required type="password" class="campo-registro" placeholder="Cree una contraseña" name="password"
+                id="password" autocomplete="new-password">
+              <button class="boton-ver-registro" type="button" id="togglePassword">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="grupo-campo">
+            <label for="confirm_password" class="etiqueta-registro">🔑 Confirmar Contraseña:</label>
+            <div class="grupo-entrada">
+              <input required type="password" class="campo-registro" placeholder="Confirme su contraseña"
+                name="confirm_password" id="confirm_password">
+              <button class="boton-ver-registro" type="button" id="toggleConfirmPassword">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>       
+
+          <button type="submit" class="boton-registro">🍟 Registrarse</button>
+        </form>
+
+        <div class="enlaces-registro">
+          <a href="{{ url_for('login') }}" class="enlace-registro">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("tipo_documento").addEventListener("change", function () {
+    const numeroDocumento = document.getElementById("numero_documento");
+    if (this.value) {
+      numeroDocumento.setAttribute("required", "true");
+    } else {
+      numeroDocumento.removeAttribute("required");
+    }
+  });
+</script>
+
+{% endblock %}

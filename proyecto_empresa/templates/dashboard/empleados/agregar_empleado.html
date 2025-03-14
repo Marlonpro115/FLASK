@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block titulo %}Agregar Empleado{% endblock %}
+
+{% block contenido %}
+<div class="empleados-form-container">
+    <h2 class="empleados-titulo">🍔 Agregar Nuevo Empleado 🍟</h2>
+
+    <form action="{{ url_for('agregar_empleado') }}" method="POST" class="empleados-form">
+
+        <fieldset>
+            <legend>📋 Información Personal</legend>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required pattern="[A-Za-zÀ-ÿ\s]+"
+                title="Solo letras y espacios permitidos">
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required pattern="[A-Za-zÀ-ÿ\s]+"
+                title="Solo letras y espacios permitidos">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="ejemplo@email.com">
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9,15}"
+                title="Ingrese un número válido (9 a 15 dígitos)" placeholder="Ej: 123456789">
+        </fieldset>
+
+        <fieldset>
+            <legend>🏢 Detalles del Trabajo</legend>
+            <label for="cargo">Cargo:</label>
+            <select id="cargo" name="cargo" required>
+                <option value="" disabled selected>Seleccionar cargo</option>
+                <option value="Cajero">🛒 Cajero</option>
+                <option value="Cocinero">👨‍🍳 Cocinero</option>
+                <option value="Gerente">🏆 Gerente</option>
+                <option value="Supervisor">🧐 Supervisor</option>
+                <option value="Limpieza">🧹 Limpieza</option>
+                <option value="Repartidor">🚴‍♂️ Repartidor</option>
+            </select>
+
+            <label for="sucursal">Sucursal:</label>
+            <select id="sucursal" name="sucursal_id" required>
+                <option value="" disabled selected>Seleccionar sucursal</option>
+                {% for sucursal in sucursales %}
+                <option value="{{ sucursal.id }}">{{ sucursal.nombre }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="salario">Salario ($):</label>
+            <input type="number" step="0.01" id="salario" name="salario" required min="1000" max="5000">
+
+            <label for="fecha_contratacion">Fecha de Contratación:</label>
+            <input type="date" id="fecha_contratacion" name="fecha_contratacion" required max="{{ hoy }}">
+
+            <label for="horario">Horario:</label>
+            <select id="horario" name="horario" required>
+                <option value="" disabled selected>Seleccionar horario</option>
+                <option value="Mañana (06:00 - 14:00)">🌅 Mañana (06:00 - 14:00)</option>
+                <option value="Tarde (14:00 - 22:00)">🌇 Tarde (14:00 - 22:00)</option>
+                <option value="Noche (22:00 - 06:00)">🌙 Noche (22:00 - 06:00)</option>
+                <option value="Rotativo">🔄 Rotativo</option>
+            </select>
+
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado">
+                <option value="Activo" selected>🟢 Activo</option>
+                <option value="Inactivo">🔴 Inactivo</option>
+            </select>
+        </fieldset>
+
+        <button type="submit" class="empleados-btn-guardar">✅ Guardar Empleado</button>
+    </form>
+</div>
+
+<style>
+    /* Contenedor principal */
+    .empleados-form-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    /* Título */
+    .empleados-titulo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #d50000;
+        margin-bottom: 20px;
+    }
+
+    /* Formulario */
+    .empleados-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-align: left; /* Asegura que el texto esté alineado a la izquierda */
+        width: 100%; /* Para que ocupe toda la línea y no quede centrado */
+    }
+
+    /* Estilo de los fieldset */
+    fieldset {
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    legend {
+        font-size: 18px;
+        font-weight: bold;
+        color: #d50000;
+    }
+
+    /* Inputs y selects */
+    input,
+    select {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 15px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border 0.3s;
+    }
+
+    input:focus,
+    select:focus {
+        border: 2px solid #d50000;
+        outline: none;
+    }
+
+    /* Botón de guardar */
+    .empleados-btn-guardar {
+        background: #d50000;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .empleados-btn-guardar:hover {
+        background: #a80000;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .empleados-form-container {
+            width: 90%;
+        }
+    }
+</style>
+{% endblock %}

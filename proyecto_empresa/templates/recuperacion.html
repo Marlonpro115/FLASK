@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block titulo %} Recuperar Contraseña {% endblock %}
+
+{% block contenido %}
+<div class="contenedor-recuperacion">
+  <div class="tarjeta-recuperacion">
+    <h3 class="titulo-recuperacion">🔑 Recuperar Contraseña</h3>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      <div class="alerta-recuperacion alerta-{{ category }}">
+        {{ message }}
+        <button type="button" class="cerrar-alerta" data-bs-dismiss="alerta">X</button>
+      </div>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('recuperacion') }}" method="post" id="recoveryForm">
+      <div class="grupo-campo">
+        <label for="email" class="etiqueta-recuperacion">📧 Correo Electrónico:</label>
+        <input 
+          required 
+          type="email" 
+          class="campo-recuperacion" 
+          placeholder="Ingrese su correo electrónico" 
+          name="email" 
+          id="email"
+          autocomplete="email"
+          autofocus>
+        <small class="texto-ayuda">Recibirás un enlace para restablecer tu contraseña.</small>
+      </div>
+
+      <button type="submit" class="boton-recuperacion" id="sendButton">
+        <span id="buttonText">Enviar</span>
+        <span class="spinner-border spinner-border-sm d-none" id="loadingSpinner" role="status"></span>
+      </button>
+    </form>
+
+    <div class="enlaces-recuperacion">
+      <a href="{{ url_for('login') }}" class="enlace-recuperacion">← Volver al inicio de sesión</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

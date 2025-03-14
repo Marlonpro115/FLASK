@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block titulo %}Administrar Clientes - McDonald's{% endblock %}
+
+{% block contenido %}
+<div class="clientes-container">
+    <h2 class="clientes-titulo">
+        <img src="{{ url_for('static', filename='img/mcdonalds_logo.png') }}" alt="McDonald's" class="mcd-logo">
+        Gestión de Clientes
+    </h2>
+    <a href="{{ url_for('agregar_cliente') }}" class="clientes-btn-agregar">➕ Agregar Cliente</a>
+
+    <div class="clientes-tabla-container">
+        <table class="clientes-tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Ciudad</th>
+                    <th>Fecha de Registro</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if clientes %}
+                {% for cliente in clientes %}
+                <tr>
+                    <td>#{{ cliente.id }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.apellido }}</td>
+                    <td>{{ cliente.email if cliente.email else 'N/A' }}</td>
+                    <td>{{ cliente.telefono if cliente.telefono else 'N/A' }}</td>
+                    <td>{{ cliente.direccion if cliente.direccion else 'N/A' }}</td>
+                    <td>{{ cliente.ciudad if cliente.ciudad else 'N/A' }}</td>
+                    <td>{{ cliente.fecha_registro.strftime('%d/%m/%Y') }}</td>
+                    <td class="clientes-acciones">
+                        <a href="{{ url_for('editar_cliente', cliente_id=cliente.id) }}" class="btn-editar">✏️ Editar</a>
+                        <form action="{{ url_for('eliminar_cliente', cliente_id=cliente.id) }}" method="POST"
+                            class="eliminar-form"
+                            onsubmit="return confirm('¿Eliminar a {{ cliente.nombre }} {{ cliente.apellido }}?');">
+                            <button type="submit" class="btn-eliminar">🗑️ Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="9" class="clientes-texto-centrado">No hay clientes registrados.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .clientes-container {
+        max-width: 90%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .mcd-logo {
+        height: 50px;
+        vertical-align: middle;
+    }
+
+    .clientes-titulo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffbc0d;
+    }
+
+    .clientes-btn-agregar {
+        display: inline-block;
+        background: #ffbc0d;
+        color: #fff;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .clientes-tabla {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .clientes-tabla th,
+    .clientes-tabla td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .clientes-tabla th {
+        background: #ffbc0d;
+        color: white;
+    }
+
+    .clientes-tabla tbody tr:hover {
+        background: #f7f7f7;
+    }
+
+    .clientes-acciones {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn-editar,
+    .btn-eliminar {
+        padding: 6px 12px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .btn-editar {
+        background: #007bff;
+        color: white;
+    }
+
+    .btn-editar:hover {
+        background: #0056b3;
+    }
+
+    .btn-eliminar {
+        background: #dc3545;
+        color: white;
+    }
+
+    .btn-eliminar:hover {
+        background: #b52a37;
+    }
+
+    .eliminar-form {
+        display: inline;
+    }
+</style>
+{% endblock %}

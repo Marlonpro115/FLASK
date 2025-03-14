@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block titulo %}Administrar Ventas - McDonald's{% endblock %}
+
+{% block contenido %}
+<div class="ventas-container">
+    <h2 class="ventas-titulo">
+        <img src="{{ url_for('static', filename='img/mcdonalds_logo.png') }}" alt="McDonald's" class="mcd-logo">
+        Gestión de Ventas
+    </h2>
+    <a href="{{ url_for('agregar_venta') }}" class="ventas-btn-agregar">➕ Agregar Venta</a>
+
+    <div class="ventas-tabla-container">
+        <table class="ventas-tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Sucursal</th>
+                    <th>Empleado</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Método de Pago</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if ventas %}
+                {% for venta in ventas %}
+                <tr>
+                    <td>#{{ venta.id }}</td>
+                    <td>{{ venta.sucursal.nombre }}</td>
+                    <td>{{ venta.empleado.nombre if venta.empleado else 'N/A' }}</td>
+                    <td>{{ venta.cliente.nombre if venta.cliente else 'N/A' }}</td>
+                    <td>{{ venta.fecha_venta.strftime('%d/%m/%Y %H:%M') }}</td>
+                    <td>${{ venta.total }}</td>
+                    <td>{{ venta.metodo_pago }}</td>
+                    <td class="ventas-acciones">
+                        <a href="{{ url_for('editar_venta', venta_id=venta.id) }}" class="btn-editar">✏️ Editar</a>
+                        <form action="{{ url_for('eliminar_venta', venta_id=venta.id) }}" method="POST"
+                            class="eliminar-form"
+                            onsubmit="return confirm('¿Eliminar la venta #{{ venta.id }}?');">
+                            <button type="submit" class="btn-eliminar">🗑️ Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="8" class="ventas-texto-centrado">No hay ventas registradas.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .ventas-container {
+        max-width: 90%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .mcd-logo {
+        height: 50px;
+        vertical-align: middle;
+    }
+
+    .ventas-titulo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffbc0d;
+    }
+
+    .ventas-btn-agregar {
+        display: inline-block;
+        background: #ffbc0d;
+        color: #fff;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .ventas-tabla {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .ventas-tabla th,
+    .ventas-tabla td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .ventas-tabla th {
+        background: #ffbc0d;
+        color: white;
+    }
+
+    .ventas-tabla tbody tr:hover {
+        background: #f7f7f7;
+    }
+
+    .ventas-acciones {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn-editar,
+    .btn-eliminar {
+        padding: 6px 12px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .btn-editar {
+        background: #007bff;
+        color: white;
+    }
+
+    .btn-editar:hover {
+        background: #0056b3;
+    }
+
+    .btn-eliminar {
+        background: #dc3545;
+        color: white;
+    }
+
+    .btn-eliminar:hover {
+        background: #b52a37;
+    }
+
+    .eliminar-form {
+        display: inline;
+    }
+</style>
+{% endblock %}

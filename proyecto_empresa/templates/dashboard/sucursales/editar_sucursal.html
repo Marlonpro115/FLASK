@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block titulo %}Editar Sucursal{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center text-primary">Editar Sucursal</h2>
+        <form action="{{ url_for('editar_sucursal', sucursal_id=sucursal.id) }}" method="POST">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ sucursal.nombre }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{ sucursal.telefono }}" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion" value="{{ sucursal.direccion }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="ciudad" class="form-label">Ciudad</label>
+                    <input type="text" class="form-control" id="ciudad" name="ciudad" value="{{ sucursal.ciudad }}" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="horario_atencion" class="form-label">Horario de Atención</label>
+                    <input type="text" class="form-control" id="horario_atencion" name="horario_atencion" value="{{ sucursal.horario_atencion }}" required>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                <a href="{{ url_for('sucursales') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .sucursal-form-container {
+        background: #fff;
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-top: 5px solid #DA291C;
+    }
+
+    h2 {
+        text-align: center;
+        color: #DA291C;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        background-color: #FFC72C;
+        color: black;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #DA291C;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-secondary:hover {
+        background-color: #495057;
+    }
+</style>
+{% endblock %}

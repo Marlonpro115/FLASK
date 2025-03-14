@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block titulo %}Administrar Menú{% endblock %}
+
+{% block contenido %}
+<div class="mcd-categorias-container">
+    <h2 class="mcd-titulo">Gestión de Categorías del Menú</h2>
+    <div class="mcd-grid">
+
+        {% if categorias %}
+            {% for categoria in categorias %}
+            <div class="mcd-card">
+                <img src="{{ url_for('static', filename=categoria.imagen) }}" class="mcd-card-img"
+                    alt="{{ categoria.nombre }}">
+                <div class="mcd-card-body">
+                    <h5 class="mcd-card-title">{{ categoria.nombre }}</h5>
+                    <p class="mcd-card-text">
+                        Administra los productos disponibles en la categoría de {{ categoria.nombre|lower }}.
+                    </p>
+                    <a href="{{ url_for('gestionar_categoria', categoria_id=categoria.id) }}" class="mcd-btn">Gestionar</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="mcd-texto-centrado">No hay categorías disponibles.</p>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

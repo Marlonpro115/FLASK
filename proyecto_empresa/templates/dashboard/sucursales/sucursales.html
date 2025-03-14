@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block titulo %}Administrar Sucursales - McDonald's{% endblock %}
+
+{% block contenido %}
+<div class="sucursales-container">
+    <h2 class="sucursales-titulo">
+        <img src="{{ url_for('static', filename='img/mcdonalds_logo.png') }}" alt="McDonald's" class="mcd-logo">
+        Gestión de Sucursales
+    </h2>
+    <a href="{{ url_for('agregar_sucursal') }}" class="sucursales-btn-agregar">➕ Agregar Sucursal</a>
+
+    <div class="sucursales-tabla-container">
+        <table class="sucursales-tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Ciudad</th>
+                    <th>Teléfono</th>
+                    <th>Horario de Atención</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if sucursales %}
+                {% for sucursal in sucursales %}
+                <tr>
+                    <td>#{{ sucursal.id }}</td>
+                    <td>{{ sucursal.nombre }}</td>
+                    <td>{{ sucursal.direccion }}</td>
+                    <td>{{ sucursal.ciudad }}</td>
+                    <td>{{ sucursal.telefono }}</td>
+                    <td>{{ sucursal.horario_atencion }}</td>
+                    <td class="sucursales-acciones">
+                        <a href="{{ url_for('editar_sucursal', sucursal_id=sucursal.id) }}" class="btn-editar">✏️ Editar</a>
+                        <form action="{{ url_for('eliminar_sucursal', sucursal_id=sucursal.id) }}" method="POST"
+                            class="eliminar-form"
+                            onsubmit="return confirm('¿Eliminar la sucursal {{ sucursal.nombre }}?');">
+                            <button type="submit" class="btn-eliminar">🗑️ Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="7" class="sucursales-texto-centrado">No hay sucursales registradas.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .sucursales-container {
+        max-width: 90%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .mcd-logo {
+        height: 50px;
+        vertical-align: middle;
+    }
+
+    .sucursales-titulo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffbc0d;
+    }
+
+    .sucursales-btn-agregar {
+        display: inline-block;
+        background: #ffbc0d;
+        color: #fff;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .sucursales-tabla {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .sucursales-tabla th,
+    .sucursales-tabla td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .sucursales-tabla th {
+        background: #ffbc0d;
+        color: white;
+    }
+
+    .sucursales-tabla tbody tr:hover {
+        background: #f7f7f7;
+    }
+
+    .sucursales-acciones {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn-editar,
+    .btn-eliminar {
+        padding: 6px 12px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .btn-editar {
+        background: #007bff;
+        color: white;
+    }
+
+    .btn-editar:hover {
+        background: #0056b3;
+    }
+
+    .btn-eliminar {
+        background: #dc3545;
+        color: white;
+    }
+
+    .btn-eliminar:hover {
+        background: #b52a37;
+    }
+
+    .eliminar-form {
+        display: inline;
+    }
+</style>
+{% endblock %}

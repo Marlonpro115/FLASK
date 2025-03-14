@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Dashboard {% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-center p-3">
+                <img src="{{ url_for('static', filename='img/menu.jpg') }}" class="card-img-top" alt="Menú">
+                <div class="card-body">
+                    <h5 class="card-title">Menú</h5>
+                    <p class="card-text">Gestión de productos del menú de McDonald's.</p>
+                    <a href="{{ url_for('menu_categorias') }}" class="btn btn-warning">Administrar Menú</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-center p-3">
+                <img src="{{ url_for('static', filename='img/empleados.jpg') }}" class="card-img-top" alt="Empleados">
+                <div class="card-body">
+                    <h5 class="card-title">Empleados</h5>
+                    <p class="card-text">Información y gestión de empleados de la tienda.</p>
+                    <a href="{{ url_for('empleados') }}" class="btn btn-warning">Gestión de Empleados</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-center p-3">
+                <img src="{{ url_for('static', filename='img/clientes.jpg') }}" class="card-img-top" alt="Clientes">
+                <div class="card-body">
+                    <h5 class="card-title">Clientes</h5>
+                    <p class="card-text">Registro y administración de clientes frecuentes.</p>
+                    <a href="{{ url_for('clientes') }}" class="btn btn-warning">Gestión de Clientes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-center p-3">
+                <img src="{{ url_for('static', filename='img/promociones.jpg') }}" class="card-img-top" alt="Promociones">
+                <div class="card-body">
+                    <h5 class="card-title">Promociones</h5>
+                    <p class="card-text">Gestión de ofertas y descuentos especiales.</p>
+                    <a href="#" class="btn btn-warning">Ver Promociones</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-center p-3">
+                <img src="{{ url_for('static', filename='img/sucursales.jpg') }}" class="card-img-top" alt="Sucursales">
+                <div class="card-body">
+                    <h5 class="card-title">Sucursales</h5>
+                    <p class="card-text">Información y administración de sucursales.</p>
+                    <a href="{{ url_for('sucursales') }}" class="btn btn-warning">Ver Sucursales</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-center p-3">
+                <img src="{{ url_for('static', filename='img/ventas.png') }}" class="card-img-top" alt="Sucursales">
+                <div class="card-body">
+                    <h5 class="card-title">Ventas</h5>
+                    <p class="card-text">Información y administración de ventas.</p>
+                    <a href="{{ url_for('ventas') }}" class="btn btn-warning">Ver Ventas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
